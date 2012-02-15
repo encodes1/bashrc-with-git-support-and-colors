@@ -1,0 +1,11 @@
+adds color to the command prompt and shows the git branch + the status of the git directory (e.g. [MASTER] or [MASTER*])
+Also adds some alias commands for git
+gs = git status
+gb = git branch
+gc = git checkout
+
+
+
+TODO
+fix the bug that shows *
+add common alias

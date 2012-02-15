@@ -123,11 +123,11 @@ SVNVER=`svn info | grep Revision | awk '{print $NF}'`
     else
 SVN=""
     fi
-
     # Feels kind of like cheating...but works so well!
     #export PS1="${host}:${wd}${venv}${BZR}${SVN} ${UC}\u${end}"
     #export PS1='\u@\h \[\033[1;33m\]\w\[\033[0m\]$(parse_git_branch)$ '
-    export PS1="${UC}\u@${host}:${wd}${venv} ${PURPLE}[$(parse_git_branch)${RED}$(parse_git_dirty)${PURPLE}]${end} "
+    export PS1="${UC}\u@\h:${wd}${venv}${PURPLE} ${BZR}${SVN}$(parse_git_branch)${PURPLE}${end}"
+    #export PS1="${UC}\u@\h:${wd}${venv} ${PURPLE}$(parse_git_branch)${RED}$(parse_git_dirty)${PURPLE}${end} "
     #export PS1 = '\u @ \h $(parse_git_branch) ${end}'
 }
 export PROMPT_COMMAND=set_prompt
@@ -140,7 +140,7 @@ function parse_git_dirty {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
 function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
 }
 
 ## Alias ##
