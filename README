@@ -4,8 +4,5 @@ gs = git status
 gb = git branch
 gc = git checkout
 
-
-
 TODO
-fix the bug that shows *
 add common alias
